@@ -1,64 +1,60 @@
-# Operating Model
+# Рабочая модель
 
-## Product definition
+## Определение
 
-Loop Engineering Agent Pack is not an external app. It is a Codex subagent pack plus a repository protocol.
+Loop Engineering Agent Pack — это не отдельное приложение. Это пакет Codex-субагентов плюс протокол репозитория.
 
-The target operating model is:
-
-```text
-GitHub repository = shared workspace
-.loop/ = project memory and coordination protocol
-.codex/agents/ = active Codex roles
-AGENTS.md = persistent project instructions
-Human owner = final approval
-```
-
-## Why this shape
-
-Codex can already access GitHub, branches, diffs, pull requests, and repository files. Therefore, the useful layer is not another tool that talks to Codex. The useful layer is a set of roles inside Codex itself.
-
-## Main loop
+## Модель работы
 
 ```text
-1. loop_planner defines strategy and tasks.
-2. loop_contract_writer creates a bounded task contract.
-3. loop_maker implements exactly one contract.
-4. loop_checker independently verifies the result.
-5. loop_architect audits structure when needed.
-6. loop_memory updates shared state.
-7. Human owner approves final DONE.
+GitHub repository = общее рабочее пространство
+.loop/ = память проекта и протокол координации
+.codex/agents/ = рабочие роли Codex
+AGENTS.md = постоянные инструкции проекта
+Андрей = финальное решение
 ```
 
-## Responsibility split
+## Почему так
 
-| Role | Can change code? | Can create tasks? | Can approve DONE? |
+Codex уже работает с репозиторием, ветками, diff, PR и файлами. Поэтому полезный слой — не внешний инструмент, а набор ролей внутри Codex.
+
+## Основной цикл
+
+```text
+1. loop_planner создаёт стратегию и задачи.
+2. loop_contract_writer создаёт контракт задачи.
+3. loop_maker выполняет один контракт.
+4. loop_checker независимо проверяет результат.
+5. loop_architect проверяет структуру при необходимости.
+6. loop_memory обновляет состояние.
+7. Андрей принимает финальное решение.
+```
+
+## Разделение ответственности
+
+| Роль | Меняет код? | Создаёт задачи? | Закрывает DONE? |
 |---|---:|---:|---:|
-| loop_planner | No | Yes | No |
-| loop_contract_writer | No | Contract only | No |
-| loop_maker | Yes, within Scope | No | No |
-| loop_checker | No | No | No |
-| loop_architect | No | Recommendations only | No |
-| loop_memory | No | No | Only with explicit human decision |
-| Human owner | Yes | Yes | Yes |
+| loop_planner | Нет | Да | Нет |
+| loop_contract_writer | Нет | Только контракт | Нет |
+| loop_maker | Да, в рамках Scope | Нет | Нет |
+| loop_checker | Нет | Нет | Нет |
+| loop_architect | Нет | Только рекомендации | Нет |
+| loop_memory | Нет | Нет | Только по явному решению Андрея |
+| Андрей | Да | Да | Да |
 
-## First maturity level
+## Первый уровень зрелости
 
-The MVP should stay at controlled human approval:
+MVP остаётся на управляемом уровне:
 
-- no automerge;
-- no unattended production changes;
-- no hidden task expansion;
-- no broad refactors without explicit contract;
-- no task completion without independent checking.
+- без автомержа;
+- без скрытого расширения задач;
+- без широких рефакторингов без контракта;
+- без закрытия задачи без независимой проверки.
 
-## Future additions
+## Возможные следующие шаги
 
-Possible later additions:
-
-- Claude agent pack;
 - GitHub issue templates;
 - installer script;
 - example target repository;
-- CI checks for TOML validity;
-- LoopHub UI only after the protocol proves useful.
+- CI-проверки TOML;
+- UI только после проверки протокола на практике.
