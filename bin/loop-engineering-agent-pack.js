@@ -11,10 +11,12 @@ Loop Engineering Agent Pack
 
 Команды:
   install      Установить loop_orchestrator в ~/.codex/agents/
+  init         Alias для install
   where        Показать путь установки
 
 Примеры:
   npx loop-engineering-agent-pack install
+  npx loop-engineering-agent-pack init
   npx leap install
   npx leap where
 `);
@@ -25,7 +27,7 @@ if (!command || command === "--help" || command === "-h") {
   process.exit(0);
 }
 
-if (command === "install") {
+if (command === "install" || command === "init") {
   await installGlobalAgent({
     force: args.includes("--force"),
     dryRun: args.includes("--dry-run")
