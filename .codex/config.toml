@@ -1,0 +1,6 @@
+# Project-scoped Codex configuration for Loop Engineering Agent Pack.
+# Custom agents live in .codex/agents/.
+
+[agents]
+max_threads = 6
+max_depth = 1
