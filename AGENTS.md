@@ -1,57 +1,55 @@
 # AGENTS.md — Loop Engineering Agent Pack
 
-## Repository mission
+## Назначение репозитория
 
-This repository contains a Codex-only Loop Engineering Agent Pack.
+Этот репозиторий содержит Codex-only пакет субагентов для Loop Engineering.
 
-The pack does not replace Codex. It teaches Codex to work through explicit roles, task contracts, checker reports, project memory, and human approval.
+Пакет не заменяет Codex. Он задаёт для Codex роли, контракты задач, отчёты проверки, внешнюю память проекта и human approval.
 
-## Current scope
+## Текущий scope
 
-Included:
+Входит в MVP:
 
-- Codex custom agents in `.codex/agents/`.
-- Shared Loop Engineering protocol in `.loop/`.
-- Templates for task contracts, task states, maker reports, checker reports, architecture reports, and memory updates.
-- Installation instructions for target repositories.
+- кастомные Codex-агенты в `.codex/agents/`;
+- общий Loop Engineering протокол в `.loop/`;
+- шаблоны контрактов задач, состояний, maker-отчётов, checker-отчётов, архитектурных отчётов и обновлений памяти;
+- инструкции по установке пакета в целевые репозитории.
 
-Excluded for MVP:
+Не входит в MVP:
 
-- Claude agents.
-- External LoopHub application.
-- CLI installer.
-- Web UI.
-- Automerge.
-- Autonomous production deployment.
+- отдельное приложение поверх пакета;
+- CLI-установщик;
+- Web UI;
+- автоматическое принятие изменений без подтверждения Андрея.
 
-## Working rules for Codex
+## Правила работы для Codex
 
-1. Work in small, reviewable changes.
-2. Do not add Claude-specific files unless Андрей explicitly asks.
-3. Do not convert this repository into an application before the agent pack is stable.
-4. Keep every role narrow and opinionated.
-5. Prefer Markdown and TOML over code unless an installer is explicitly requested.
-6. Preserve the distinction between:
-   - `planner` — creates strategy and tasks;
-   - `contract_writer` — creates task contracts;
-   - `maker` — implements one task;
-   - `checker` — reviews and reports, but does not fix;
-   - `architect` — audits structural risk;
-   - `memory` — updates project state.
-7. Do not let Maker mark tasks as DONE.
-8. Do not let Checker edit product code.
-9. Use `.loop/` as the shared state and protocol layer.
-10. When modifying instructions, explain why the change improves agent coordination.
+1. Работай маленькими, проверяемыми изменениями.
+2. Не превращай этот репозиторий в приложение, пока агентный пакет не стабилизирован.
+3. Сохраняй каждую роль узкой и понятной.
+4. Предпочитай Markdown и TOML, если Андрей явно не попросил код или установщик.
+5. Разделяй роли:
+   - `planner` — создаёт стратегию и задачи;
+   - `contract_writer` — создаёт контракты задач;
+   - `maker` — выполняет одну задачу;
+   - `checker` — проверяет и пишет отчёт, но не исправляет код;
+   - `architect` — проверяет архитектурные риски;
+   - `memory` — обновляет состояние проекта.
+6. Maker не ставит задачу в DONE.
+7. Checker не редактирует продуктовый код.
+8. Используй `.loop/` как общий слой состояния и протокола.
+9. Когда меняешь инструкции, объясняй, как это улучшает координацию агентов.
+10. Все user-facing prompts и Codex-facing инструкции в этом репозитории пиши на русском языке.
 
-## Validation expectations
+## Проверка изменений
 
-For documentation-only changes:
+Для изменений только в документации:
 
-- Check Markdown structure manually.
-- Ensure file names in README match actual files.
-- Ensure agent names in TOML are consistent with docs.
+- проверь структуру Markdown вручную;
+- убедись, что имена файлов в README совпадают с реальными файлами;
+- убедись, что имена агентов в TOML согласованы с документацией.
 
-For future code changes:
+Для будущих изменений кода:
 
-- Add tests before claiming readiness.
-- Do not invent test results.
+- добавляй тесты до заявления о готовности;
+- не выдумывай результаты проверок.
