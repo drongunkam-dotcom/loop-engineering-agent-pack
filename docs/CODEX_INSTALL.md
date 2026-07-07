@@ -1,3 +1,3 @@
-# Install
+# Установка
 
-Use AGENTS.md.
+Смотри `AGENTS.md`.
