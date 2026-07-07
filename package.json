@@ -1,0 +1,27 @@
+{
+  "name": "loop-engineering-agent-pack",
+  "version": "0.1.0",
+  "description": "Global Codex Loop Engineering orchestrator installer",
+  "type": "module",
+  "bin": {
+    "loop-engineering-agent-pack": "./bin/loop-engineering-agent-pack.js",
+    "leap": "./bin/loop-engineering-agent-pack.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "assets/",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "check": "node bin/loop-engineering-agent-pack.js --help",
+    "pack:dry": "npm pack --dry-run"
+  },
+  "keywords": [
+    "codex",
+    "loop-engineering",
+    "agents"
+  ],
+  "license": "MIT"
+}
